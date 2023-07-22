@@ -8,8 +8,8 @@ export default function ContactPage({ params }: Props) {
 }
 
 export function generateStaticParams() {
-  const products = ['pants', 'skirt'];
-  return products.map(product => ({
-    slug:product // 위에있는 props 형식과 같게!
-  }))
+  const products = ["pants", "skirt"];
+  return products.map((product) => ({
+    slug: product, // 위에있는 props 형식과 같게!
+  }));
 }
