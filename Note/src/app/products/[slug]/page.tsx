@@ -1,6 +1,7 @@
 import NotFountPage from "@/app/not-found";
 import { getProduct, getProducts } from "@/service/product";
 
+export const revalidate = 3; // SSG -> ISR로 3초마다 업데이트 하게 하는 코드
 type Props = {
   params: {
     slug: string;
