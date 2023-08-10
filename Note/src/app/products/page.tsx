@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 import MeowArticle from "@/components/MeowArticle";
-import clothesImage from "../../../public/clothes.jpg";
+import clothesImage from "/public/images/clothes.jpg";
 
 export const revalidate = 3; // SSG -> ISR로 3초마다 업데이트 하게 하는 코드
 
