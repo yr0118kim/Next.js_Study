@@ -1,6 +1,7 @@
 import NotFoundPage from "@/app/not-found";
 import GoProductsButton from "@/components/GoProductsButton";
 import { getProduct, getProducts } from "@/service/product";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 export const revalidate = 3; // SSG -> ISR로 3초마다 업데이트 하게 하는 코드
 type Props = {
@@ -13,9 +14,8 @@ export default async function ProductPage({ params: { slug } }: Props) {
   // 서버 파일에 있는 데이터 중 해당제품의 정보를 찾아서 그걸 보여줌
 
   if (!product) {
-    redirect('/products')
+    redirect("/products");
     // NotFoundPage();
-
   }
   return (
     <>
