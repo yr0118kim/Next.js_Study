@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import Hero from "../components/Hero";
 const TITLE_CLASS = "text-2xl font-bold text-gray-800 my-2";
+
+export const metadata: Metadata = {
+  title: 'About me',
+  description:'Yerim에 대하여'
+}
 
 export default function PostPage() {
   return (

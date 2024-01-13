@@ -1,7 +1,8 @@
 "use client";
+
+import { sendContactEmail } from "../service/contact";
 import { ChangeEvent, FormEvent, useState } from "react";
 import Banner, { BannerData } from "./Banner";
-import { sendContactEmail } from "../service/contact";
 
 type Form = {
   from: string;
@@ -14,35 +15,28 @@ const DEFAULT_DATA = {
   subject: "",
   message: "",
 };
-// 사용자의 입력을 처리해야하는 부분이기 때문에 클라이언트 컴포넌트로 제작
 export default function ContactForm() {
-  const [form, setForm] = useState<Form>({
-    DEFAULT_DATA,
-  });
-
+  const [form, setForm] = useState<Form>(DEFAULT_DATA);
   const [banner, setBanner] = useState<BannerData | null>(null);
 
   const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sendContactEmail(form)
+    sendContactEmail(form) //
       .then(() => {
         setBanner({
-          message: "메일을 성공적으로 보냈습니다",
+          message: "메일을 성공적으로 보냈습니다.",
           state: "success",
         });
         setForm(DEFAULT_DATA);
       })
-      .catch(() => {
+      .catch((error) => {
         setBanner({
-          message: "메일 전송에 실패했습니다. 다시 시도해주세요",
+          message: "메일전송에 실패했습니다. 다시 시도해 주세요",
           state: "error",
         });
       })
@@ -58,7 +52,7 @@ export default function ContactForm() {
       {banner && <Banner banner={banner} />}
       <form
         onSubmit={onSubmit}
-        className="w-full flex flex-col gap-2 m-4 p-4 my-4 bg-slate-700 rounded-xl text-white"
+        className="w-full flex flex-col gap-2 my-4 p-4 bg-slate-700 rounded-xl text-white"
       >
         <label htmlFor="from" className="font-semibold">
           Your Email
@@ -80,23 +74,22 @@ export default function ContactForm() {
           id="subject"
           name="subject"
           required
-          autoFocus
           value={form.subject}
           onChange={onChange}
-          className="text-black"
         />
         <label htmlFor="message" className="font-semibold">
           Message
         </label>
         <textarea
+          rows={10}
           id="message"
           name="message"
           required
-          autoFocus
           value={form.message}
           onChange={onChange}
+          className="text-black"
         />
-        <button className="text-black bg-yellow-300 font-bold hover:bg-yellow-400">
+        <button className="bg-yellow-300 text-black font-bold hover:bg-yellow-400">
           Submit
         </button>
       </form>

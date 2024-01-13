@@ -1,7 +1,8 @@
 import AdjacentPostCard from "@/app/components/AdjacentPostCard";
 import MarkdownViewer from "@/app/components/MarkdownViewer";
 import PostContent from "@/app/components/PostContent";
-import getPostData from "@/app/service/posts";
+import getPostData, { getFeaturedPosts } from "@/app/service/posts";
+import { Metadata } from "next";
 import Image from "next/image";
 import { AiTwotoneCalendar } from "react-icons/ai";
 
@@ -10,6 +11,16 @@ type Props = {
     slug: string;
   };
 };
+
+export async function generateMetadata({
+  params: { slug },
+}: Props): Promise<Metadata> {
+  const { title, description } = await getPostData(slug);
+  return {
+    title,
+    description,
+  };
+}
 
 export default async function PostPage({ params: { slug } }: Props) {
   const post = await getPostData(slug);
@@ -31,4 +42,11 @@ export default async function PostPage({ params: { slug } }: Props) {
       </section>
     </article>
   );
+}
+
+export async function generateStaticParams() {
+  const posts = await getFeaturedPosts();
+  return posts.map((post) => ({
+    slug: post.path,
+  }));
 }

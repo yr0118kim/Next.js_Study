@@ -7,9 +7,9 @@ export default function HomePage() {
   return (
     <section>
       <Hero />
-      {/* @ts-expect-error Server Component */}
+      {/* @ts-ignore*/}
       <FeaturedPosts />
-      {/* @ts-expect-error Server Component */}
+      {/* @ts-ignore */}
       <CarouselPosts></CarouselPosts>
     </section>
   );

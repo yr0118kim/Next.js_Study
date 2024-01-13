@@ -27,7 +27,6 @@ type Props = {
 
 export default function MultiCarousel({ children }: Props) {
   return (
-    /* @ts-expect-error Server Component */
     <Carousel infinite autoPlay responsive={responsive} itemClass="m-2">
       {children}
     </Carousel>
