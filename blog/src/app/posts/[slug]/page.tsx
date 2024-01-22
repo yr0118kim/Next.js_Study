@@ -12,6 +12,7 @@ type Props = {
   };
 };
 
+
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata> {
