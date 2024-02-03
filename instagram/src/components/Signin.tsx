@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import { ClientSafeProvider, signIn } from "next-auth/react";
-import ColorButton from "./ui/ColorButton";
+import { ClientSafeProvider, signIn } from 'next-auth/react';
+import ColorButton from './ui/ColorButton';
 
 type Props = {
   providers: Record<string, ClientSafeProvider>;
   callbackUrl: string;
 };
-
 export default function Signin({ providers, callbackUrl }: Props) {
   return (
     <>
@@ -16,8 +15,8 @@ export default function Signin({ providers, callbackUrl }: Props) {
           key={id}
           text={`Sign In with ${name}`}
           onClick={() => signIn(id, { callbackUrl })}
-          size="big"
-        ></ColorButton>
+          size='big'
+        />
       ))}
     </>
   );

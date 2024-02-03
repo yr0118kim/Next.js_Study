@@ -30,10 +30,22 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'user'}], // usertype의 reference 참고
+          to: [{type: 'user'}],
         },
       ],
-      validation: (Rule) => Rule.unique(), // 중복성 제거
+      validation: (Rule) => Rule.unique(),
+    },
+    {
+      title: 'Followers',
+      name: 'followers',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'user'}],
+        },
+      ],
+      validation: (Rule) => Rule.unique(),
     },
     {
       title: 'Bookmarks',
@@ -45,6 +57,7 @@ export default {
           to: [{type: 'post'}],
         },
       ],
+      validation: (Rule) => Rule.unique(),
     },
   ],
   preview: {
