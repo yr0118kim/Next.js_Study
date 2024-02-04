@@ -10,7 +10,7 @@ export type FullPost = {
   userImage: string;
   image: string;
   text: string;
-  createAt: string;
+  createdAt: string;
   likes: string[];
   comments: Comment[];
 };
