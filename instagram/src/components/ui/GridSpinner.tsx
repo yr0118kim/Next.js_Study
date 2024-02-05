@@ -12,6 +12,6 @@ type Props = {
 };
 
 export default function GridSpinner({ color = "red" }: Props) {
-    
+  //@ts-expect-error
   return <GridLoader color={color}></GridLoader>;
 }
