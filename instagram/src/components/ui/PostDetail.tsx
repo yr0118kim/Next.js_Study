@@ -2,20 +2,18 @@ import { FullPost, SimplePost } from "@/model/post";
 import Image from "next/image";
 import userSWR from "swr";
 import PostUserAvatar from "../PostUserAvatar";
-import ActionBar from "../ActionBar";
-import { create } from "domain";
-import CommentForm from "../CommentForm";
 import Avatar from "../Avatar";
+import ActionBar from "../ActionBar";
+import CommentForm from "../CommentForm";
 
 type Props = {
   post: SimplePost;
 };
-
 export default function PostDetail({ post }: Props) {
   const { id, userImage, username, image, createdAt, likes } = post;
   const { data } = userSWR<FullPost>(`/api/posts/${id}`);
   const comments = data?.comments;
-  console.log(comments);
+
   return (
     <section className="flex w-full h-full">
       <div className="relative basis-3/5">
@@ -41,7 +39,7 @@ export default function PostDetail({ post }: Props) {
                     highlight={commentUsername === username}
                   />
                   <div className="ml-2">
-                    <span className="mr-1 font-bold">{username}</span>
+                    <span className="mr-1 font-bold">{commentUsername}</span>
                     <span>{comment}</span>
                   </div>
                 </li>
