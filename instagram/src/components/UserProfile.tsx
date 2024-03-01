@@ -8,8 +8,8 @@ type Props = {
 export default function UserProfile({ user }: Props) {
   const { image, username, name, followers, following, posts } = user;
   const info = [
-    { name: 'posts', data : posts },
-    { name: 'followers', data: followers },
+    { title: 'posts', data : posts },
+    { title :  'followers', data: followers },
     { title: 'following', data: following },
     
   ]
@@ -20,8 +20,8 @@ export default function UserProfile({ user }: Props) {
         <h1>{username}</h1>
         <FollowButton />
         <ul>
-          {info.map((item, index) => <li key={index}>
-            <span>{ }</span>
+          {info.map(({title,data}, index) => <li key={index}>
+            <span>{data}</span>
           </li>)}
 
         </ul>
